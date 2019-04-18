@@ -4,7 +4,7 @@
     Simple web app for storing your pictures or searching for random inspirations. You can upload pictures as public ones (that everyone can see) or store them in your personal cloud based storage. Everything is fully free.
 
 ## Entity definition
-Picture: 
+- [ ] Picture
     - "ID": string (GUID),
     - "Title": string,
     - "Description": string,
