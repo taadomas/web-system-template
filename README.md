@@ -5,14 +5,14 @@
 
 ## Entity definition
 Picture {
-    "ID": string (GUID),
-    "Title": string,
-    "Description": string,
-    "DateCreated": ISO 8601 format date string,
-    "DateModified": ISO 8601 format date string,
-    "Author": string (author id)
-    "PublicPhoto": boolean
-    "Content": string (base64 encoded content)
+    - "ID": string (GUID),
+    - "Title": string,
+    - "Description": string,
+    - "DateCreated": ISO 8601 format date string,
+    - "DateModified": ISO 8601 format date string,
+    - "Author": string (author id)
+    - "PublicPhoto": boolean
+    - "Content": string (base64 encoded content)
 }
 
 ## API definition
