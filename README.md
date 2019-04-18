@@ -1,36 +1,67 @@
-# WEB system
-- [ ] Replace "WEB system" with your system name
+# Imgur random pictures storage
 
 ## Description
-- [ ] Provide WEB system description in few sentences - its purpose, users, etc.
+    Simple web app for storing your pictures or searching for random inspirations. You can upload pictures as public ones (that everyone can see) or store them in your personal cloud based storage. Everything is fully free.
 
 ## Entity definition
-- [ ] Define the entity ("object" that will be manipulated) of WEB system
-- [ ] Entity should have a name
-- [ ] Entity should have 3 mandatory attributes:
-    - [ ] ID - depending on specific service this could be a number or string
-    - [ ] Creation date - (if applicable for specific service) ISO 8601 format date string
-    - [ ] Modification date - (if applicable for specific service) ISO 8601 format date string
-- [ ] Entity should have at least 5 custom attributes
-    - [ ] Each attribute should have a type defined: number, string, ISO 8601 date string, boolean, object, array or other
-    - [ ] Each attribute should have restrictions defined: list of constants, or number range, or string length, or string format, or object schema, or array schema or other. For example, you can use `joi` language to define restrictions: https://github.com/hapijs/joi/blob/v13.1.2/API.md
+Picture {
+    "ID": string (GUID),
+    "Title": string,
+    "Description": string,
+    "DateCreated": ISO 8601 format date string,
+    "DateModified": ISO 8601 format date string,
+    "Author": string (author id)
+    "PublicPhoto": boolean
+    "Content": string (base64 encoded content)
+}
 
 ## API definition
-- [ ] Define specific service (konkrečios paslaugos) API methods that WEB system is going to use
-- [ ] Optionally define additional API methods that WEB system is going to expose
-- [ ] API should have at least 4 methods
-    - [ ] A method to return entity by ID. Should not have request body
-    - [ ] A method to return multiple entities (Array) by ID. This method should support at least one header value to:
-        - [ ] Return only entities that match pattern in one of its attributes
-        - [ ] Return 10 entities starting provided index
-        - [ ] Return sorted entities by one of its attributes (both ascending and descending)
-        - [ ] Other (should be approved by Product Owner (PO))
-    - [ ] A method to remove entity by ID. Returns removed entity. Should not have request body
-    - [ ] A method to update entity by ID. Accepts entity to update and returns updated entity
-- [ ] Each method should have HTTP method defined
-- [ ] Each method should have URI defined (use {id} as entity ID placeholder)
-- [ ] Should return all 4xx errors in unified format. Define format using `joi` language
-- [ ] Should return all 5xx errors in unified format. Define format using `joi` language
+- [ ] Get "Hostname/picture/{ID}"
+    - Returns 200 (OK) specific picture object by ID
+    - Returns 404 (NotFound) if picture doesn't exist.
+    - Returns 401 (NotAuthorized) if you are not logged in.
+
+- [ ] Get "Hostname/pictures?filter=filter&itemsinpage=5%page=2"
+    - Returns 200 (OK) and {itemsinpage or default 10} pictures while skipping {page x itemsinpage or default 0} pictures of your pictures (taking your id from token) that matches not mandatory filter {filter}
+    - Returns 200 with empty list if no pictures matches request.
+    - Returns 401 (NotAuthorized) if you are not logged in.
+    
+- [ ] Get "Hostname/public/picture/{ID}"
+    - Returns 200 (OK) specific picture object by ID
+    - Returns 404 (NotFound) if picture doesn't exist.
+    
+- [ ] Get "Hostname/public/pictures?filter=filter&itemsinpage=5%page=2"
+    - Returns 200 (OK) and {itemsinpage or default 10} pictures while skipping {page x itemsinpage or default 0} pictures of public pictures that matches not mandatory filter {filter}
+    - Returns 200 with empty list if no pictures matches request.
+    
+- [ ] Post "Hostname/picture/uploadPicture" and pass Picture object
+    - 202 if picture uploaded
+    - 401 if not logged in
+    - 500 if some internal errors occured
+    
+- [ ] Delete "Hostname/picture/{id}"
+    - 200 deleted
+    - 404 not found
+    - 401 not logged in
+    - 403 not your picture
+    
+- [ ] Delete "Hostname/public/picture/{id}"
+    - 200 deleted
+    - 404 not found
+    - 401 not logged in
+    - 403 not your picture
+    
+- [ ] Update "Hostname/picture/{id}" with picture object
+    - 200 updated
+    - 404 not found
+    - 401 not logged in
+    - 403 not your picture
+    
+- [ ] Update "Hostname/public/picture/{id}" with picture object
+    - 200 updated
+    - 404 not found
+    - 401 not logged in
+    - 403 not your picture
 
 ## UI definition
 - [ ] Define the structure of how visually the WEB system is going to look like
