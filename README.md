@@ -5,11 +5,12 @@
 
 ## Entity definition
 - [ ] Image
-    - "ID": string (GUID),
-    - "Title": string,
-    - "Description": string,
+    - "ID": string - 16 symbols,
+    - "Title": string - Max(500),
+    - "Description": string - Max(500),
     - "DateCreated": ISO 8601 format date string,
     - "DateModified": ISO 8601 format date string,
+    - "Content": Base64 encoded string - 4mb max.
 
 
 ## API definition
