@@ -11,6 +11,8 @@
     - "DateCreated": ISO 8601 format date string,
     - "DateModified": ISO 8601 format date string,
     - "Content": Base64 encoded string - 4mb max.
+    - "type": string - max(50)
+    - "link": string - max(200)
 
 
 ## API definition
