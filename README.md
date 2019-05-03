@@ -22,7 +22,7 @@
 
 - [ ] Post "https://api.imgur.com/3/images""
     - Returns 200 (OK) uploaded new image
-    - 401, 403
+    - 401, 403, 500
     
 - [ ] Delete "https://api.imgur.com/3/image/{imageId}"
     - Returns 200 (OK) image deleted
@@ -30,7 +30,7 @@
     
 - [ ] Post "https://api.imgur.com/3/image/{imageId}"
     - Returns 200 (OK) image updated
-    - 401, 403
+    - 401, 403, 500
     
 - [ ] Post "https://api.imgur.com/oauth2/token" and pass Pin string
     - 200 authenticated and returns token
